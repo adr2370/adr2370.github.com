@@ -11,7 +11,84 @@
 	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
 	<script src="js/three.min.js"></script>
 	<script type="text/javascript">
-		
+		var renderer = new THREE.WebGLRenderer();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+		var scene = new THREE.Scene();
+		var camera = new THREE.PerspectiveCamera(
+		                                35,             // Field of view
+		                                800 / 600,      // Aspect ratio
+		                                0.1,            // Near plane
+		                                10000           // Far plane
+		                            );
+		camera.position.set( 30, 30, 30 );
+		camera.lookAt( scene.position );
+		scene.add( camera );
+		var lights=new Array();
+		lights.push(new THREE.PointLight( 0xFFFFFF ));
+		lights.push(new THREE.PointLight( 0xFFFFFF ));
+		lights.push(new THREE.PointLight( 0xFFFFFF ));
+		lights.push(new THREE.PointLight( 0xFFFFFF ));
+		lights.push(new THREE.PointLight( 0xFFFFFF ));
+		lights.push(new THREE.PointLight( 0xFFFFFF ));
+		lights[0].position.set( 100, 0, 0 );
+		lights[1].position.set( -100, 0, 0 );
+		lights[2].position.set( 0, 100, 0 );
+		lights[3].position.set( 0, -100, 0 );
+		lights[4].position.set( 0, 0, 100 );
+		lights[5].position.set( 0, 0, -100 );
+		scene.add( lights[0] );
+		scene.add( lights[1] );
+		scene.add( lights[2] );
+		scene.add( lights[3] );
+		scene.add( lights[4] );
+		scene.add( lights[5] );
+		renderer.render( scene, camera );
+		makeBuilding(0,-10,0,10,20);
+		function makeBuilding(x,y,z,side,height) {
+			var currX=x;
+			var currY=y;
+			var currZ=z;
+			var cubes = new Array();
+			animate();
+			function animate() {
+				if(currY<height+y&&cubes.length<side*side||cubes.length<side*side-1) {
+					requestAnimationFrame( animate );
+				} else if(currY<height+y) {
+					cubes=new Array();
+					currX=x;
+					currY++;
+					currZ=z;
+					requestAnimationFrame( animate );
+				}
+				var color1=Math.floor((Math.random()*0xFFFFFF));
+				cubes.push(new THREE.Mesh(
+				                        new THREE.CubeGeometry( 1, 1, 1 ),
+				                        new THREE.MeshLambertMaterial( { color: color1 } )
+				                    ));
+				var step=cubes.length;
+				var s=Math.floor(Math.sqrt(step));
+				if(s%2==0) s--;
+				var diff=step-s*s;
+				var c=cubes.length-1;
+				if(diff<=1) {
+					currZ+=1;
+				} else if(diff<=s+1) {
+					currX+=1;
+				} else if(diff<=s*2+2) {
+					currZ-=1;
+				} else if(diff<=s*3+3) {
+					currX-=1;
+				} else {
+					currZ+=1;
+				}
+				cubes[c].position.x=currX;
+				cubes[c].position.y=currY;
+				cubes[c].position.z=currZ;
+				scene.add( cubes[c] );
+				renderer.render( scene, camera );
+			}
+		}
 	</script>
 </body>
 </html>
