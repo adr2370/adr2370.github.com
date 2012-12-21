@@ -30,6 +30,9 @@ THREE.FlyControls = function ( object, domElement ) {
 	this.moveState = { up: 0, down: 0, left: 0, right: 0, forward: 0, back: 0, pitchUp: 0, pitchDown: 0, yawLeft: 0, yawRight: 0, rollLeft: 0, rollRight: 0 };
 	this.moveVector = new THREE.Vector3( 0, 0, 0 );
 	this.rotationVector = new THREE.Vector3( 0, 0, 0 );
+	
+	this.mouseX = 0;
+	this.mouseY = 0;
 
 	this.handleEvent = function ( event ) {
 
@@ -64,14 +67,14 @@ THREE.FlyControls = function ( object, domElement ) {
 			case 82: /*R*/ this.moveState.up = 1; break;
 			case 70: /*F*/ this.moveState.down = 1; break;
 
-			case 38: /*up*/ this.moveState.pitchUp = 1; break;
-			case 40: /*down*/ this.moveState.pitchDown = 1; break;
+			//case 38: /*up*/ this.moveState.pitchUp = 1; break;
+			//case 40: /*down*/ this.moveState.pitchDown = 1; break;
 
-			case 37: /*left*/ this.moveState.yawLeft = 1; break;
-			case 39: /*right*/ this.moveState.yawRight = 1; break;
+			//case 37: /*left*/ this.moveState.yawLeft = 1; break;
+			//case 39: /*right*/ this.moveState.yawRight = 1; break;
 
-			case 81: /*Q*/ this.moveState.rollLeft = 1; break;
-			case 69: /*E*/ this.moveState.rollRight = 1; break;
+			//case 81: /*Q*/ this.moveState.rollLeft = 1; break;
+			//case 69: /*E*/ this.moveState.rollRight = 1; break;
 
 		}
 
@@ -125,6 +128,8 @@ THREE.FlyControls = function ( object, domElement ) {
 		if ( this.dragToLook ) {
 
 			this.mouseStatus ++;
+			this.mouseX = event.pageX;
+			this.mouseY = event.pageY;
 
 		} else {
 
@@ -147,8 +152,8 @@ THREE.FlyControls = function ( object, domElement ) {
 			var halfWidth  = container.size[ 0 ] / 2;
 			var halfHeight = container.size[ 1 ] / 2;
 
-			this.moveState.yawLeft   = - ( ( event.pageX - container.offset[ 0 ] ) - halfWidth  ) / halfWidth;
-			this.moveState.pitchDown =   ( ( event.pageY - container.offset[ 1 ] ) - halfHeight ) / halfHeight;
+			this.moveState.yawLeft   = - ( ( event.pageX - container.offset[ 0 ] ) - this.mouseX  ) / this.mouseX;
+			this.moveState.pitchDown =   ( ( event.pageY - container.offset[ 1 ] ) - this.mouseY ) / this.mouseY;
 
 			this.updateRotationVector();
 
