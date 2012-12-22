@@ -71,6 +71,30 @@ function makeCity(numbers) {
 		var side=length*squareSize;
 		var buildingGeometry = new THREE.CubeGeometry( 0, 0, 0 );
 		var windowGeometry = new THREE.CubeGeometry( 0, 0, 0 );
+		cube = new THREE.Mesh(
+		                        new THREE.CubeGeometry( side, height, side ),
+		                        new THREE.MeshLambertMaterial( { color: buildingColor } )
+		                    );
+		cube.position.x=currX;
+		cube.position.y=currY;
+		cube.position.z=currZ;
+		var object=new THREE.Object3D();
+		object.add(cube);
+		buildings.push(object);
+		scene.add(object);
+		console.log("building "+buildings.length+" made with height "+floors);
+	}
+	function makeCoolBuilding(x,y,z,windows,floors,squareSize) {
+		var buildingColor=Math.floor(Math.random()*0xEEEEEE);
+		var currX=x;
+		var currY=y;
+		var currZ=z;
+		var cube;
+		var height=squareSize*(floors*3);
+		var length=windows*2+1;
+		var side=length*squareSize;
+		var buildingGeometry = new THREE.CubeGeometry( 0, 0, 0 );
+		var windowGeometry = new THREE.CubeGeometry( 0, 0, 0 );
 		for(currY=y;currY<=height+y;currY+=squareSize) {
 			var currLevel=currY-y;
 			currLevel/=squareSize;
@@ -83,18 +107,18 @@ function makeCity(numbers) {
 						if((currZ==z||currZ==z+side-squareSize)&&((currX-x)/squareSize)%2==1) shouldChange=true;
 						if(shouldChange&&(currLevel%3==1||currLevel%3==2)) {
 							color1=0x000000;
-						}
-						cube = new THREE.Mesh(
-						                        new THREE.CubeGeometry( squareSize, squareSize, squareSize ),
-						                        new THREE.MeshLambertMaterial( { color: color1 } )
-						                    );
-						cube.position.x=currX;
-						cube.position.y=currY;
-						cube.position.z=currZ;
-						if(color1==0x000000) {
-							THREE.GeometryUtils.merge(windowGeometry, cube);
-						} else {
-							THREE.GeometryUtils.merge(buildingGeometry, cube);
+							cube = new THREE.Mesh(
+							                        new THREE.CubeGeometry( squareSize, squareSize, squareSize ),
+							                        new THREE.MeshLambertMaterial( { color: color1 } )
+							                    );
+							cube.position.x=currX;
+							cube.position.y=currY;
+							cube.position.z=currZ;
+							if(color1==0x000000) {
+								THREE.GeometryUtils.merge(windowGeometry, cube);
+							} else {
+								THREE.GeometryUtils.merge(buildingGeometry, cube);
+							}
 						}
 					}
 				}
