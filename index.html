@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id="fb-root"></div>
-	<div class="login" onclick="login();">Login with Facebook</div>
+	<div class="login" style="cursor:pointer;" onclick="login();"><img src="http://www.tweekly.fm/media/image/login-facebook.png" /></div>
 	<script id="facebook-jssdk" async="" src="https://connect.facebook.net/en_US/all.js"></script>
 	<script type="text/javascript">
 		function login() {
@@ -35,7 +35,7 @@
 
 		function getFriends() {
 			if($('canvas').length==0) {
-				$('.fb-login-button').remove();
+				$('.login').remove();
 				$('#fb-root').append('<div style="position: absolute;">w=forward<br>a=left<br>s=backward<br>d=right<br>r=up<br>f=down<br>mouse drag=look around<br></div>');
 				FB.api(
 				    {
