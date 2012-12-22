@@ -25,6 +25,7 @@
 		function login() {
 		    FB.login(function(response) {
 		        if (response.authResponse) {
+					console.log(response.authResponse);
 					getFriends();
 		        } else {
 		            // cancelled
@@ -42,6 +43,7 @@
 		    }
 		});
 		function getFriends() {
+			console.log('start');
 			FB.api('/me/friends', function(response) {
 			        if(response.data) {
 			            $.each(response.data,function(index,friend) {
