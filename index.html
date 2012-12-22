@@ -42,16 +42,17 @@
 		    }
 		});
 		function getFriends() {
-		    FB.api('/me/friends', function(response) {
-		        if(response.data) {
-		            $.each(response.data,function(index,friend) {
-		                console.log(friend.name + ' has id:' + friend.id);
-		            });
-		        } else {
-		            console.log("Error!");
-		        }
-		    });
+			FB.api('/me/friends', function(response) {
+			        if(response.data) {
+			            $.each(response.data,function(index,friend) {
+			                console.log(friend.name + ' has id:' + friend.id);
+			            });
+			        } else {
+			            console.log("Error!");
+			        }
+			    });
 		}
+		};
 		(function(d){
 		 var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
 		 if (d.getElementById(id)) {return;}
