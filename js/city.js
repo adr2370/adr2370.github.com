@@ -22,6 +22,7 @@ function makeCity(numbers) {
 			currZ+=buildingSpace;
 		}
 	}
+	animate();
 	return buildings;
 	function init() {
 		clock = new THREE.Clock(true);
@@ -51,7 +52,6 @@ function makeCity(numbers) {
 		controls.movementSpeed=50;
 		controls.lookSpeed=0.05;
 		renderer.render( scene, camera );
-		animate();
 	}
 	function animate() {
 		requestAnimationFrame( animate );
