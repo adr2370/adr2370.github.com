@@ -1,18 +1,15 @@
 function makeCity(numbers) {
-	numbers.sort(function(a,b){return b-a});
 	var clock,buildings,renderer,scene,camera,lights,controls;
 	var buildingSpace=15;
 	init();
 	var currX=0;
 	var currZ=0;
 	for(var i=0;i<numbers.length;i++) {
-		console.log(currX+" "+currZ);
 		makeBuilding(currX,0,currZ,5,numbers[buildings.length],1);
 		var step=buildings.length+1;
 		var s=Math.floor(Math.sqrt(step));
 		if(s%2==0) s--;
 		var diff=step-s*s;
-		console.log(diff+" "+s);
 		if(diff<=1) {
 			currZ+=15;
 		} else if(diff<=s+1) {
@@ -25,6 +22,7 @@ function makeCity(numbers) {
 			currZ+=buildingSpace;
 		}
 	}
+	return buildings;
 	function init() {
 		clock = new THREE.Clock(true);
 		buildings=new Array();
