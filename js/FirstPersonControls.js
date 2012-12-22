@@ -89,8 +89,8 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 			switch ( event.button ) {
 
-				case 0: this.moveForward = true; break;
-				case 2: this.moveBackward = true; break;
+				case 0: this.moveForward = false; break;
+				case 2: this.moveBackward = false; break;
 
 			}
 
@@ -227,8 +227,10 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 			}
 
-			this.lon += this.mouseX * actualLookSpeed;
-			if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed; // * this.invertVertical?-1:1;
+			if(this.mouseDragOn) {
+				this.lon += this.mouseX * actualLookSpeed;
+				if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed; // * this.invertVertical?-1:1;
+			}
 
 			this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
 			this.phi = ( 90 - this.lat ) * Math.PI / 180;
@@ -251,8 +253,10 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 		}
 
-		this.lon += this.mouseX * actualLookSpeed;
-		if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed * verticalLookRatio;
+		if(this.mouseDragOn) {
+			this.lon += this.mouseX * actualLookSpeed;
+			if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed * verticalLookRatio;
+		}
 
 		this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
 		this.phi = ( 90 - this.lat ) * Math.PI / 180;
