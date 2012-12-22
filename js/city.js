@@ -1,5 +1,4 @@
 function makeCity(numbers) {
-	var clock,buildings,renderer,scene,camera,lights,controls;
 	var buildingSpace=15;
 	init();
 	var currX=0;
@@ -27,21 +26,6 @@ function makeCity(numbers) {
 		}
 	}
 	animate();
-	var ray = new THREE.Ray(camera.position,null);
-	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-	function onDocumentMouseDown( event ) {
-		if(event.button==2) {
-			event.preventDefault();
-			var projector = new THREE.Projector();
-			var mouse3D = projector.unprojectVector( new THREE.Vector3( ( event.clientX / renderer.domElement.width ) * 2 - 1, - ( event.clientY / renderer.domElement.height ) * 2 + 1, 0.5 ), camera );
-			ray.direction=mouse3D.subSelf(camera.position).normalize();
-			var intersects=ray.intersectObjects(scene.__objects);
-			if ( intersects.length > 0 ) {
-				console.log((intersects[0].object.id-9)/2);
-			}
-		}
-	}
-	return buildings;
 	function init() {
 		clock = new THREE.Clock(true);
 		buildings=new Array();

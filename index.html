@@ -11,6 +11,25 @@
 	<div class="login" style="cursor:pointer;" onclick="login();"><img src="http://www.tweekly.fm/media/image/login-facebook.png" /></div>
 	<script id="facebook-jssdk" async="" src="https://connect.facebook.net/en_US/all.js"></script>
 	<script type="text/javascript">
+		var clock,buildings,renderer,scene,camera,lights,controls;
+		
+		var friends;
+		
+		document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+		function onDocumentMouseDown( event ) {
+			if(event.button==2) {
+				event.preventDefault();
+				var ray = new THREE.Ray(camera.position,null);
+				var projector = new THREE.Projector();
+				var mouse3D = projector.unprojectVector( new THREE.Vector3( ( event.clientX / renderer.domElement.width ) * 2 - 1, - ( event.clientY / renderer.domElement.height ) * 2 + 1, 0.5 ), camera );
+				ray.direction=mouse3D.subSelf(camera.position).normalize();
+				var intersects=ray.intersectObjects(scene.__objects);
+				if ( intersects.length > 0 ) {
+					var friendNum=(intersects[0].object.id-9)/2;
+					console.log(friends[friendNum]);
+				}
+			}
+		}
 	
 		function login() {
 		    FB.login(function(response) {
@@ -44,12 +63,12 @@
 						query: 'SELECT uid, name, mutual_friend_count FROM user WHERE uid IN (SELECT uid1 FROM friend WHERE uid2 = me()) ORDER BY mutual_friend_count DESC'
 				    },
 				    function(data) {
+						friends=data;
 						var x=new Array();
 						for(var i=0;i<data.length;i++) {
 							x.push(Math.floor(data[i].mutual_friend_count/10));
 						}
-						x.sort(function(a,b){return b-a});
-						var buildings=makeCity(x);
+						makeCity(x);
 				    }
 				);
 			}
