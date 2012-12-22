@@ -1,14 +1,15 @@
 function makeCity(numbers) {
+	var clock,buildings,renderer,scene,camera,lights,controls;
 	var buildingSpace=15;
 	init();
 	var currX=0;
 	var currZ=0;
 	for(var i=0;i<numbers.length;i++) {
-		if(i==0) {
-			makeCoolBuilding(currX,0,currZ,5,numbers[buildings.length],1);
-		} else {
+		//if(i==0) {
+		//	makeCoolBuilding(currX,0,currZ,5,numbers[buildings.length],1);
+		//} else {
 			makeBuilding(currX,0,currZ,5,numbers[buildings.length],1);
-		}
+		//}
 		var step=buildings.length+1;
 		var s=Math.floor(Math.sqrt(step));
 		if(s%2==0) s--;
@@ -34,7 +35,7 @@ function makeCity(numbers) {
 			var projector = new THREE.Projector();
 			var mouse3D = projector.unprojectVector( new THREE.Vector3( ( event.clientX / renderer.domElement.width ) * 2 - 1, - ( event.clientY / renderer.domElement.height ) * 2 + 1, 0.5 ), camera );
 			ray.direction=mouse3D.subSelf(camera.position).normalize();
-			var intersects=ray.intersectObjects(scene.objects);
+			var intersects=ray.intersectObjects(scene.__objects);
 			console.log(intersects);
 			if ( intersects.length > 0 ) {
 			}
