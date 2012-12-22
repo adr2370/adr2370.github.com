@@ -34,6 +34,7 @@
 		}
 		
 		FB.getLoginStatus(function(response) {
+			console.log(response.status);
 		    if (response.status === 'connected') {
 		        // connected
 		    } else if (response.status === 'not_authorized') {
