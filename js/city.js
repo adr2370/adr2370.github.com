@@ -82,6 +82,10 @@ function makeCity(numbers) {
 		cube.position.x=currX+side/2;
 		cube.position.y=currY+height/2;
 		cube.position.z=currZ+side/2;
+		cube.on('click', function()
+		{
+		    console.log(buildings.length);
+		});
 		var object=new THREE.Object3D();
 		object.add(cube);
 		buildings.push(object);

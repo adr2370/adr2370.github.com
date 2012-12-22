@@ -76,6 +76,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 	this.onMouseDown = function ( event ) {
 
+		if( event.button==0 ) {
 		if ( this.domElement !== document ) {
 
 			this.domElement.focus();
@@ -97,6 +98,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 			}
 
 		}
+		}
 
 		this.mouseDragOn = true;
 
@@ -104,6 +106,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 	this.onMouseUp = function ( event ) {
 
+		if( event.button==0 ) {
 		event.preventDefault();
 		event.stopPropagation();
 
@@ -118,6 +121,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 			}
 
+		}
 		}
 
 		this.mouseDragOn = false;
