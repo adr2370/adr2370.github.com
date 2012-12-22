@@ -34,9 +34,6 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 	this.mouseX = 0;
 	this.mouseY = 0;
 
-	this.mouseStartX = 0;
-	this.mouseStartY = 0;
-
 	this.lat = 0;
 	this.lon = 0;
 	this.phi = 0;
@@ -89,8 +86,6 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 		event.stopPropagation();
 
 		this.activeLook=true;
-		this.mouseStartX = event.pageX;
-		this.mouseStartY = event.pageY;
 
 		if ( this.activeLook ) {
 
@@ -133,13 +128,13 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 		if ( this.domElement === document ) {
 
-			this.mouseX = event.pageX - this.mouseStartX;
-			this.mouseY = event.pageY - this.mouseStartY;
+			this.mouseX = event.pageX - this.viewHalfX;
+			this.mouseY = event.pageY - this.viewHalfY;
 
 		} else {
 
-			this.mouseX = event.pageX - this.domElement.offsetLeft - this.mouseStartX;
-			this.mouseY = event.pageY - this.domElement.offsetTop - this.mouseStartY;
+			this.mouseX = event.pageX - this.domElement.offsetLeft - this.viewHalfX;
+			this.mouseY = event.pageY - this.domElement.offsetTop - this.viewHalfY;
 
 		}
 
