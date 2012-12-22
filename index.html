@@ -8,6 +8,7 @@
 </head>
 <body>
 	<div id="fb-root"></div>
+	<div class="login">Visualize how many mutual friends you have with each of your facebook friends</div>
 	<div class="login" style="cursor:pointer;" onclick="login();"><img src="http://www.tweekly.fm/media/image/login-facebook.png" /></div>
 	<script id="facebook-jssdk" async="" src="https://connect.facebook.net/en_US/all.js"></script>
 	<script type="text/javascript">
@@ -67,7 +68,7 @@
 						friends=data;
 						var x=new Array();
 						for(var i=0;i<data.length;i++) {
-							x.push(Math.floor(data[i].mutual_friend_count/10));
+							x.push(Math.floor(1+data[i].mutual_friend_count/10));
 						}
 						makeCity(x);
 				    }

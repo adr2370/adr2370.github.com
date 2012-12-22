@@ -36,7 +36,7 @@ function makeCity(numbers) {
 		controls = new THREE.FirstPersonControls( camera );
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.body.appendChild( renderer.domElement );
-		camera.position.set( -100, 20, 0 );
+		camera.position.set( 250, 200, 200 );
 		camera.lookAt( scene.position );
 		scene.add( camera );
 		for(var i=0;i<6;i++) {
