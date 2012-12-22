@@ -85,7 +85,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 		event.preventDefault();
 		event.stopPropagation();
 
-		activeLook=true;
+		this.activeLook=true;
 
 		if ( this.activeLook ) {
 
@@ -107,7 +107,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 		event.preventDefault();
 		event.stopPropagation();
 
-		activeLook=false;
+		this.activeLook=false;
 
 		if ( this.activeLook ) {
 
