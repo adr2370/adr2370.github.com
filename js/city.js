@@ -51,7 +51,6 @@ function makeCity(numbers) {
 		}
 		controls.movementSpeed=50;
 		controls.lookSpeed=0.05;
-		renderer.render( scene, camera );
 	}
 	function animate() {
 		requestAnimationFrame( animate );
@@ -127,6 +126,5 @@ function makeCity(numbers) {
 		buildings.push(object);
 		scene.add(object);
 		console.log("building "+buildings.length+" made with height "+floors);
-		renderer.render( scene, camera );
 	}
 }
