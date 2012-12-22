@@ -84,13 +84,9 @@ function makeCity(numbers) {
 		cube.position.z=currZ+side/2;
 		var object=new THREE.Object3D();
 		object.add(cube);
-		object.on('click', function()
-		{
-		    console.log(buildings.length);
-		});
 		buildings.push(object);
 		scene.add(object);
-		console.log("building "+buildings.length+" made with height "+floors);
+		//console.log("building "+buildings.length+" made with height "+floors);
 	}
 	function makeCoolBuilding(x,y,z,windows,floors,squareSize) {
 		var buildingColor=Math.floor(Math.random()*0xEEEEEE);
@@ -157,6 +153,6 @@ function makeCity(numbers) {
 		object.add(new THREE.Mesh( windowGeometry, new THREE.MeshLambertMaterial( { color: 0x000000 } ) ));
 		buildings.push(object);
 		scene.add(object);
-		console.log("building "+buildings.length+" made with height "+floors);
+		//console.log("building "+buildings.length+" made with height "+floors);
 	}
 }

@@ -48,7 +48,13 @@
 							x.push(Math.floor(data[i].mutual_friend_count/10));
 						}
 						x.sort(function(a,b){return b-a});
-						console.log(makeCity(x));
+						var buildings=makeCity(x);
+						for(var i=0;i<buildings.length;i++) {
+							buildings[i].on('click', function()
+							{
+							    console.log(buildings.length);
+							});
+						}
 				    }
 				);
 			}
