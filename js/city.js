@@ -32,6 +32,8 @@ function makeCity(numbers) {
 	function onDocumentMouseDown( event ) {
 		if(event.button==2) {
 			event.preventDefault();
+			var projector = new THREE.Projector();
+			var mouse3D = projector.unprojectVector( new THREE.Vector3( ( event.clientX / renderer.domElement.width ) * 2 - 1, - ( event.clientY / renderer.domElement.height ) * 2 + 1, 0.5 ), camera );
 			ray.direction=mouse3D.subSelf(camera.position).normalize();
 			var intersects=ray.intersectScene(scene);
 			console.log(intersects);
