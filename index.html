@@ -24,6 +24,7 @@
 		
 		function login() {
 		    FB.login(function(response) {
+				console.log(response.authResponse);
 		        if (response.authResponse) {
 		        } else {
 		            // cancelled
@@ -44,7 +45,7 @@
 			FB.api(
 			    {
 					method: 'fql.query',
-					query: 'SELECT uid, name, mutual_friend_count FROM user WHERE uid IN (SELECT uid1 FROM friend WHERE uid2 = me()) ORDER BY mutual_friend_count DESC limit 16'
+					query: 'SELECT uid, name, mutual_friend_count FROM user WHERE uid IN (SELECT uid1 FROM friend WHERE uid2 = me()) ORDER BY mutual_friend_count DESC'
 			    },
 			    function(data) {
 					var x=new Array();

@@ -5,7 +5,11 @@ function makeCity(numbers) {
 	var currX=0;
 	var currZ=0;
 	for(var i=0;i<numbers.length;i++) {
-		makeBuilding(currX,0,currZ,5,numbers[buildings.length],1);
+		if(i==0) {
+			makeCoolBuilding(currX,0,currZ,5,numbers[buildings.length],1);
+		} else {
+			makeBuilding(currX,0,currZ,5,numbers[buildings.length],1);
+		}
 		var step=buildings.length+1;
 		var s=Math.floor(Math.sqrt(step));
 		if(s%2==0) s--;
@@ -75,9 +79,9 @@ function makeCity(numbers) {
 		                        new THREE.CubeGeometry( side, height, side ),
 		                        new THREE.MeshLambertMaterial( { color: buildingColor } )
 		                    );
-		cube.position.x=currX;
-		cube.position.y=currY;
-		cube.position.z=currZ;
+		cube.position.x=currX+side/2;
+		cube.position.y=currY+height/2;
+		cube.position.z=currZ+side/2;
 		var object=new THREE.Object3D();
 		object.add(cube);
 		buildings.push(object);
@@ -107,18 +111,18 @@ function makeCity(numbers) {
 						if((currZ==z||currZ==z+side-squareSize)&&((currX-x)/squareSize)%2==1) shouldChange=true;
 						if(shouldChange&&(currLevel%3==1||currLevel%3==2)) {
 							color1=0x000000;
-							cube = new THREE.Mesh(
-							                        new THREE.CubeGeometry( squareSize, squareSize, squareSize ),
-							                        new THREE.MeshLambertMaterial( { color: color1 } )
-							                    );
-							cube.position.x=currX;
-							cube.position.y=currY;
-							cube.position.z=currZ;
-							if(color1==0x000000) {
-								THREE.GeometryUtils.merge(windowGeometry, cube);
-							} else {
-								THREE.GeometryUtils.merge(buildingGeometry, cube);
-							}
+						}	
+						cube = new THREE.Mesh(
+						                        new THREE.CubeGeometry( squareSize, squareSize, squareSize ),
+						                        new THREE.MeshLambertMaterial( { color: color1 } )
+						                    );
+						cube.position.x=currX;
+						cube.position.y=currY;
+						cube.position.z=currZ;
+						if(color1==0x000000) {
+							THREE.GeometryUtils.merge(windowGeometry, cube);
+						} else {
+							THREE.GeometryUtils.merge(buildingGeometry, cube);
 						}
 					}
 				}
