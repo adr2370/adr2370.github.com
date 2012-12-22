@@ -36,8 +36,8 @@ function makeCity(numbers) {
 			var mouse3D = projector.unprojectVector( new THREE.Vector3( ( event.clientX / renderer.domElement.width ) * 2 - 1, - ( event.clientY / renderer.domElement.height ) * 2 + 1, 0.5 ), camera );
 			ray.direction=mouse3D.subSelf(camera.position).normalize();
 			var intersects=ray.intersectObjects(scene.__objects);
-			console.log(intersects);
 			if ( intersects.length > 0 ) {
+				console.log((intersects[0].object.id-9)/2);
 			}
 		}
 	}
