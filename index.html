@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id="fb-root"></div>
-	<div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1" onclick="login()"></div>
+	<div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1" onclick="login(); getLogin();"></div>
 	<script id="facebook-jssdk" async="" src="https://connect.facebook.net/en_US/all.js"></script>
 	<script type="text/javascript">
 		window.fbAsyncInit = function() {
@@ -21,6 +21,7 @@
 		    useCachedDialogs: true,
 		    oauth: true
 		  });
+		getLogin();
 		
 		function login() {
 		    FB.login(function(response) {
@@ -33,14 +34,17 @@
 		    });
 		}
 		
-		FB.getLoginStatus(function(response) {
-			console.log(response.status);
-		    if (response.status === 'connected') {
-				getFriends();
-		    } else if (response.status === 'not_authorized') {
-		    } else {
-		    }
-		}, true);
+		function getLogin() {
+			FB.getLoginStatus(function(response) {
+				console.log(response.status);
+			    if (response.status === 'connected') {
+					getFriends();
+			    } else if (response.status === 'not_authorized') {
+			    } else {
+			    }
+			}, true);
+		}
+
 		function getFriends() {
 			if($('canvas').length==0) {
 				$('.fb-login-button').remove();
