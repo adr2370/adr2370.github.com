@@ -1,5 +1,4 @@
 function makeCity(numbers) {
-	var clock,buildings,renderer,scene,camera,lights,controls;
 	var buildingSpace=15;
 	init();
 	var currX=0;
