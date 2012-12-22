@@ -55,7 +55,6 @@ function makeCity(numbers) {
 		camera.position.set( -100, 20, 0 );
 		camera.lookAt( scene.position );
 		scene.add( camera );
-		THREE.Object3D._threexDomEvent.camera(camera);
 		for(var i=0;i<6;i++) {
 			lights.push(new THREE.PointLight( 0xFFFFFF ));
 		}
