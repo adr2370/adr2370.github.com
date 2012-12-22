@@ -11,18 +11,6 @@
 	<div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1" onclick="login(); getLogin();"></div>
 	<script id="facebook-jssdk" async="" src="https://connect.facebook.net/en_US/all.js"></script>
 	<script type="text/javascript">
-		window.fbAsyncInit = function() {
-		  FB.init({ 
-		    appId: '237522263048090',
-		    status: true,
-		    cookie: true,
-		    xfbml: true,
-		    frictionlessRequests: true,
-		    useCachedDialogs: true,
-		    oauth: true
-		  });
-		getLogin();
-		
 		function login() {
 		    FB.login(function(response) {
 				console.log(response.authResponse);
@@ -33,7 +21,7 @@
 		        }
 		    });
 		}
-		
+	
 		function getLogin() {
 			FB.getLoginStatus(function(response) {
 				console.log(response.status);
@@ -65,6 +53,18 @@
 				);
 			}
 		}
+		window.fbAsyncInit = function() {
+		  FB.init({ 
+		    appId: '237522263048090',
+		    status: true,
+		    cookie: true,
+		    xfbml: true,
+		    frictionlessRequests: true,
+		    useCachedDialogs: true,
+		    oauth: true
+		  });
+		getLogin();
+		
 		};
 		(function(d){
 		 var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
