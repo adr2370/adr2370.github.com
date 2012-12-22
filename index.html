@@ -27,6 +27,7 @@
 				if ( intersects.length > 0 ) {
 					var friendNum=(intersects[0].object.id-9)/2;
 					console.log(friends[friendNum]);
+					window.open("http://www.facebook.com/"+friends[friendNum].uid);
 				}
 			}
 		}
@@ -56,7 +57,7 @@
 		function getFriends() {
 			if($('canvas').length==0) {
 				$('.login').remove();
-				$('#fb-root').append('<div style="position: absolute;">w=forward<br>a=left<br>s=backward<br>d=right<br>r=up<br>f=down<br>mouse drag=look around<br></div>');
+				$('#fb-root').append('<div style="position: absolute;">w=forward<br>a=left<br>s=backward<br>d=right<br>r=up<br>f=down<br>click and drag=look around<br>right click=open friend\'s page<br></div>');
 				FB.api(
 				    {
 						method: 'fql.query',
