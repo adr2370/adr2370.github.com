@@ -18,7 +18,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 	this.autoForward = false;
 	// this.invertVertical = false;
 
-	this.activeLook = true;
+	this.activeLook = false;
 
 	this.heightSpeed = false;
 	this.heightCoef = 1.0;
@@ -85,6 +85,8 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 		event.preventDefault();
 		event.stopPropagation();
 
+		activeLook=true;
+
 		if ( this.activeLook ) {
 
 			switch ( event.button ) {
@@ -104,6 +106,8 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 		event.preventDefault();
 		event.stopPropagation();
+
+		activeLook=false;
 
 		if ( this.activeLook ) {
 
@@ -227,10 +231,8 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 			}
 
-			if(this.mouseDragOn) {
-				this.lon += this.mouseX * actualLookSpeed;
-				if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed; // * this.invertVertical?-1:1;
-			}
+			this.lon += this.mouseX * actualLookSpeed;
+			if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed; // * this.invertVertical?-1:1;
 
 			this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
 			this.phi = ( 90 - this.lat ) * Math.PI / 180;
@@ -253,10 +255,8 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 		}
 
-		if(this.mouseDragOn) {
-			this.lon += this.mouseX * actualLookSpeed;
-			if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed * verticalLookRatio;
-		}
+		this.lon += this.mouseX * actualLookSpeed;
+		if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed * verticalLookRatio;
 
 		this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
 		this.phi = ( 90 - this.lat ) * Math.PI / 180;
