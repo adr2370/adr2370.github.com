@@ -20,13 +20,29 @@
 		    useCachedDialogs: true,
 		    oauth: true
 		  });
+		
+		function login() {
+		    FB.login(function(response) {
+		        if (response.authResponse) {
+		            // connected
+		        } else {
+		            // cancelled
+		        }
+		    });
+		}
+		
 		FB.getLoginStatus(function(response) {
-		    console.log(response.status);
-		  if (response.status === 'connected') {
-		  } else if (response.status === 'not_authorized') {
-		  } else {
-		  }
-		 });
+		    if (response.status === 'connected') {
+		        // connected
+		    } else if (response.status === 'not_authorized') {
+		        // not_authorized
+		        login();
+		    } else {
+		        // not_logged_in
+		        login();
+		    }
+		});
+		};
 		};
 		(function(d){
 		 var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
