@@ -27,6 +27,20 @@ function makeCity(numbers) {
 		}
 	}
 	animate();
+	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+	function onDocumentMouseDown( event ) {
+		if(event.button==2) {
+			event.preventDefault();
+			var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
+			var projector = new THREE.Projector();;
+			projector.unprojectVector( vector, camera );
+			var ray = new THREE.Ray( camera.position, vector.subSelf( camera.position ).normalize() );
+			var intersects = ray.intersectObjects( buildings );
+			console.log(intersects);
+			if ( intersects.length > 0 ) {
+			}
+		}
+	}
 	return buildings;
 	function init() {
 		clock = new THREE.Clock(true);
@@ -41,6 +55,7 @@ function makeCity(numbers) {
 		camera.position.set( -100, 20, 0 );
 		camera.lookAt( scene.position );
 		scene.add( camera );
+		THREE.Object3D._threexDomEvent.camera(camera);
 		for(var i=0;i<6;i++) {
 			lights.push(new THREE.PointLight( 0xFFFFFF ));
 		}
