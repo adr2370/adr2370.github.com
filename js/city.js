@@ -44,9 +44,7 @@ function makeCity(numbers) {
 		cube.position.x=currX+side/2;
 		cube.position.y=currY+height/2;
 		cube.position.z=currZ+side/2;
-		var object=new THREE.Object3D();
-		object.add(cube);
-		buildingArray.push(object);
+		buildingArray.push(cube);
 	}
 	function makeCoolBuilding(x,y,z,windows,floors,squareSize) {
 		var buildingColor=Math.floor(Math.random()*0xEEEEEE);
@@ -108,9 +106,7 @@ function makeCity(numbers) {
 				}
 			}
 		}
-		var object=new THREE.Object3D();
-		object.add(new THREE.Mesh( buildingGeometry, new THREE.MeshLambertMaterial( { color: buildingColor } ) ));
-		object.add(new THREE.Mesh( windowGeometry, new THREE.MeshLambertMaterial( { color: 0x000000 } ) ));
-		buildingArray.push(object);
+		buildingArray.push(new THREE.Mesh( buildingGeometry, new THREE.MeshLambertMaterial( { color: buildingColor } ) ));
+		buildingArray.push(new THREE.Mesh( windowGeometry, new THREE.MeshLambertMaterial( { color: 0x000000 } ) ));
 	}
 }
