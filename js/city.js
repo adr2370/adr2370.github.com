@@ -58,8 +58,8 @@ function makeCity(numbers) {
 		var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: false } );
 		//cube = new THREE.Mesh(new THREE.CubeGeometry( side, height, side,  ), material);
 		
-		var cubeGeo = new THREE.CubeGeometry(side,height,side,1,1,1,materials);
-		var cube = new THREE.Mesh(cubeGeo, new THREE.MeshFaceMaterial());
+		var cubeGeo = new THREE.CubeGeometry(side,height,side);
+		var cube = new THREE.Mesh(cubeGeo, new THREE.MeshFaceMaterial(materials));
 		
 		cube.position.x=currX+side/2;
 		cube.position.y=currY+height/2;
