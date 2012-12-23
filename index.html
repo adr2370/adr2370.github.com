@@ -12,9 +12,49 @@
 	<div class="login" style="cursor:pointer;" onclick="login();"><img src="http://www.tweekly.fm/media/image/login-facebook.png" /></div>
 	<script id="facebook-jssdk" async="" src="https://connect.facebook.net/en_US/all.js"></script>
 	<script type="text/javascript">
-		var clock,buildings,renderer,scene,camera,lights,controls;
-		
+		var buildings,renderer,scene,camera,lights,controls;
 		var friends;
+		init();
+		function init() {
+			buildings=new Array();
+			renderer = new THREE.WebGLRenderer();
+			scene = new THREE.Scene();
+			camera = new THREE.PerspectiveCamera(35,800/600,0.1,10000);
+			lights=new Array();
+			controls = new THREE.FirstPersonControls( camera );
+			renderer. setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+			camera.position.set( -250, 50, 0 );
+			camera.lookAt( scene.position );
+			scene.add( camera );
+			for(var i=0;i<6;i++) {
+				lights.push(new THREE.PointLight( 0xFFFFFF ));
+			}
+			lights[0].position.set( 1000000, 0, 0 );
+			lights[1].position.set( -1000000, 0, 0 );
+			lights[2].position.set( 0, 1000000, 0 );
+			lights[3].position.set( 0, -1000000, 0 );
+			lights[4].position.set( 0, 0, 1000000 );
+			lights[5].position.set( 0, 0, -1000000 );
+			for(var i=0;i<6;i++) {
+				scene.add( lights[i] );
+			}
+			controls.movementSpeed=50;
+			controls.lookSpeed=0.05;
+			var plane=new THREE.Mesh(new THREE.PlaneGeometry(1000,1000),new THREE.MeshLambertMaterial( { color: 0xCCCCCC } ));
+			plane.rotation.x=-1.57;
+			plane.position.set(0,0,0);
+			scene.add(plane);
+			animate();
+		}
+		function animate() {
+			requestAnimationFrame( animate );
+			render();
+		}
+		function render() {
+			controls.update( clock.getDelta() );
+			renderer.render( scene, camera );
+		}
 		
 		document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 		function onDocumentMouseDown( event ) {
@@ -27,7 +67,6 @@
 				var intersects=ray.intersectObjects(scene.__objects);
 				if ( intersects.length > 0 ) {
 					var friendNum=(intersects[0].object.id-9)/2;
-					console.log(friends[friendNum]);
 					window.open("http://www.facebook.com/"+friends[friendNum].uid);
 				}
 			}
@@ -56,7 +95,7 @@
 		}
 
 		function getFriends() {
-			if($('canvas').length==0) {
+			if(buildings.length==0) {
 				$('.login').remove();
 				$('#fb-root').append('<div style="position: absolute;">w=forward<br>a=left<br>s=backward<br>d=right<br>r=up<br>f=down<br>click and drag=look around<br>right click=open friend\'s page<br></div>');
 				FB.api(
@@ -70,7 +109,10 @@
 						for(var i=0;i<data.length;i++) {
 							x.push(Math.floor(1+data[i].mutual_friend_count/10));
 						}
-						makeCity(x);
+						buildings=makeCity(x);
+						for(var i=0;i<buildings.length;i++) {
+							scene.add(buildings[i]);
+						}
 				    }
 				);
 			}

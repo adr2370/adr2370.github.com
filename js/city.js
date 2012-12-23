@@ -1,66 +1,31 @@
 function makeCity(numbers) {
-	var buildingSpace=15;
-	init();
-	var currX=0;
-	var currZ=0;
-	for(var i=0;i<numbers.length;i++) {
-		//if(i==0) {
-		//	makeCoolBuilding(currX,0,currZ,5,numbers[buildings.length],1);
-		//} else {
+	var buildingArray,buildingSpace,currX,currZ,clock;
+	initializeCity();
+	return buildingArray;
+	function initializeCity() {
+		buildingSpace=15;
+		currX=0;
+		currZ=0;
+		clock=new THREE.Clock(true);
+		buildingArray=new Array();
+		for(var i=0;i<numbers.length;i++) {
 			makeBuilding(currX,0,currZ,5,numbers[buildings.length],1);
-		//}
-		var step=buildings.length+1;
-		var s=Math.floor(Math.sqrt(step));
-		if(s%2==0) s--;
-		var diff=step-s*s;
-		if(diff<=1) {
-			currZ+=15;
-		} else if(diff<=s+1) {
-			currX+=buildingSpace;
-		} else if(diff<=s*2+2) {
-			currZ-=buildingSpace;
-		} else if(diff<=s*3+3) {
-			currX-=buildingSpace;
-		} else {
-			currZ+=buildingSpace;
+			var step=buildingArray.length+1;
+			var s=Math.floor(Math.sqrt(step));
+			if(s%2==0) s--;
+			var diff=step-s*s;
+			if(diff<=1) {
+				currZ+=15;
+			} else if(diff<=s+1) {
+				currX+=buildingSpace;
+			} else if(diff<=s*2+2) {
+				currZ-=buildingSpace;
+			} else if(diff<=s*3+3) {
+				currX-=buildingSpace;
+			} else {
+				currZ+=buildingSpace;
+			}
 		}
-	}
-	animate();
-	function init() {
-		clock = new THREE.Clock(true);
-		buildings=new Array();
-		renderer = new THREE.WebGLRenderer();
-		scene = new THREE.Scene();
-		camera = new THREE.PerspectiveCamera(35,800/600,0.1,10000);
-		lights=new Array();
-		controls = new THREE.FirstPersonControls( camera );
-		renderer.setSize( window.innerWidth, window.innerHeight );
-		document.body.appendChild( renderer.domElement );
-		camera.position.set( -250, 50, 0 );
-		camera.lookAt( scene.position );
-		scene.add( camera );
-		for(var i=0;i<6;i++) {
-			lights.push(new THREE.PointLight( 0xFFFFFF ));
-		}
-		lights[0].position.set( 1000000, 0, 0 );
-		lights[1].position.set( -1000000, 0, 0 );
-		lights[2].position.set( 0, 1000000, 0 );
-		lights[3].position.set( 0, -1000000, 0 );
-		lights[4].position.set( 0, 0, 1000000 );
-		lights[5].position.set( 0, 0, -1000000 );
-		for(var i=0;i<6;i++) {
-			scene.add( lights[i] );
-		}
-		controls.movementSpeed=50;
-		controls.lookSpeed=0.05;
-	}
-	function animate() {
-		requestAnimationFrame( animate );
-		render();
-	}
-	function render() {
-		controls.update( clock.getDelta() );
-		renderer.render( scene, camera );
 	}
 	function makeBuilding(x,y,z,windows,floors,squareSize) {
 		var buildingColor=Math.floor(Math.random()*0xEEEEEE);
@@ -82,9 +47,7 @@ function makeCity(numbers) {
 		cube.position.z=currZ+side/2;
 		var object=new THREE.Object3D();
 		object.add(cube);
-		buildings.push(object);
-		scene.add(object);
-		//console.log("building "+buildings.length+" made with height "+floors);
+		buildingArray.push(object);
 	}
 	function makeCoolBuilding(x,y,z,windows,floors,squareSize) {
 		var buildingColor=Math.floor(Math.random()*0xEEEEEE);
@@ -149,8 +112,6 @@ function makeCity(numbers) {
 		var object=new THREE.Object3D();
 		object.add(new THREE.Mesh( buildingGeometry, new THREE.MeshLambertMaterial( { color: buildingColor } ) ));
 		object.add(new THREE.Mesh( windowGeometry, new THREE.MeshLambertMaterial( { color: 0x000000 } ) ));
-		buildings.push(object);
-		scene.add(object);
-		//console.log("building "+buildings.length+" made with height "+floors);
+		buildingArray.push(object);
 	}
 }
