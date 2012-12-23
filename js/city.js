@@ -1,5 +1,5 @@
 function makeCity(numbers) {
-	var buildingArray,buildingSpace,currX,currZ,texture,loader,materials;
+	var buildingArray,buildingSpace,currX,currZ;
 	initializeCity();
 	return buildingArray;
 	function initializeCity() {
@@ -7,21 +7,6 @@ function makeCity(numbers) {
 		currX=0;
 		currZ=0;
 		buildingArray=new Array();
-		texture = new THREE.Texture();
-		loader = new THREE.ImageLoader();
-		loader.addEventListener( 'load', function ( event ) {
-			texture.image = event.content;
-			texture.needsUpdate = true;
-		} );
-		loader.load( 'img/building.jpg' );
-		materials = [];
-		for (var i=0; i<6; i++) {
-			if(i<2||i>3) {
-				materials.push(new THREE.MeshBasicMaterial({map: texture}));
-			} else {
-				materials.push(new THREE.MeshBasicMaterial({color: 0xff0000}));
-			}
-		}
 		for(var i=0;i<numbers.length;i++) {
 			makeBuilding(currX,0,currZ,5,numbers[i],1);
 			var step=i+2;
@@ -43,22 +28,37 @@ function makeCity(numbers) {
 	}
 	function makeBuilding(x,y,z,windows,floors,squareSize) {
 		var buildingColor=Math.floor(Math.random()*0xEEEEEE);
-		var currX=x;
-		var currY=y;
-		var currZ=z;
-		var cube;
 		var height=squareSize*(floors*3);
-		var length=windows*2+1;
-		var side=length*squareSize;
-		var buildingGeometry = new THREE.CubeGeometry( 0, 0, 0 );
-		var windowGeometry = new THREE.CubeGeometry( 0, 0, 0 );
-		var geometry = new THREE.SphereGeometry( 200, 20, 20 );
-		var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: false } );
+		var side=(windows*2+1)*squareSize;
+		
+		var texture = new THREE.Texture();
+		var loader = new THREE.ImageLoader();
+		loader.addEventListener( 'load', function ( event ) {
+			texture.image = event.content;
+			texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+			texture.repeat.set( floors, 1 );
+			texture.needsUpdate = true;
+		} );
+		loader.load( 'img/building.png' );
+		var sideFace=new THREE.MeshBasicMaterial({map: texture});
+		var topFace=new THREE.MeshBasicMaterial({color: 0xBBBBBB});
+		var bottomFace=new THREE.MeshBasicMaterial({color: buildingColor});
+		var materials = [];
+		for (var i=0; i<6; i++) {
+			if(i<2||i>3) {
+				materials.push(sideFace);
+			} else if(i==2) {
+				materials.push(topFace);
+			} else {
+				materials.push(bottomFace);
+			}
+		}
+		
 		var cubeGeo = new THREE.CubeGeometry(side,height,side);
 		var cube = new THREE.Mesh(cubeGeo, new THREE.MeshFaceMaterial(materials));
-		cube.position.x=currX+side/2;
-		cube.position.y=currY+height/2;
-		cube.position.z=currZ+side/2;
+		cube.position.x=x+side/2;
+		cube.position.y=y+height/2;
+		cube.position.z=z+side/2;
 		buildingArray.push(cube);
 	}
 	function makeCoolBuilding(x,y,z,windows,floors,squareSize) {
