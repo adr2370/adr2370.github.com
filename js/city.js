@@ -1,5 +1,5 @@
 function makeCity(numbers) {
-	var buildingArray,buildingSpace,currX,currZ,texture,loader;
+	var buildingArray,buildingSpace,currX,currZ,texture,loader,materials;
 	initializeCity();
 	return buildingArray;
 	function initializeCity() {
@@ -15,7 +15,7 @@ function makeCity(numbers) {
 		} );
 		loader.load( 'img/building.jpg' );
 		
-		var materials = [];
+		materials = [];
 		for (var i=0; i<6; i++) {
 			if(i>1) {
 				materials.push(new THREE.MeshBasicMaterial({map: texture}));
