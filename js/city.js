@@ -44,10 +44,10 @@ function makeCity(numbers,names) {
 		canvas1.height=100;
 		var ctx=canvas1.getContext("2d");
 		ctx.rect(0,0,canvas1.width,canvas1.height);
-		ctx.fillStyle="rgba(255,0,0,1)";
+		ctx.fillStyle="rgba(0,0,0,1)";
 		ctx.fill();
-		ctx.font = "Bold 16px Arial";
-		ctx.fillStyle = "rgba(0,0,0,1)";
+		ctx.font = "Bold 15px Arial";
+		ctx.fillStyle = "rgba(1,1,1,1)";
 		ctx.textAlign = 'center';
 		ctx.fillText(names[buildingArray.length][0],50,40);
 		ctx.fillText(names[buildingArray.length][1],50,70);
