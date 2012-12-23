@@ -1,5 +1,5 @@
 function makeCity(numbers) {
-	var buildingArray,buildingSpace,currX,currZ;
+	var buildingArray,buildingSpace,currX,currZ,texture,loader;
 	initializeCity();
 	return buildingArray;
 	function initializeCity() {
@@ -7,6 +7,13 @@ function makeCity(numbers) {
 		currX=0;
 		currZ=0;
 		buildingArray=new Array();
+		texture = new THREE.Texture();
+		loader = new THREE.ImageLoader();
+		loader.addEventListener( 'load', function ( event ) {
+			texture.image = event.content;
+			texture.needsUpdate = true;
+		} );
+		loader.load( 'img/building.jpg' );
 		for(var i=0;i<numbers.length;i++) {
 			makeBuilding(currX,0,currZ,5,numbers[i],1);
 			var step=i+2;
@@ -37,10 +44,9 @@ function makeCity(numbers) {
 		var side=length*squareSize;
 		var buildingGeometry = new THREE.CubeGeometry( 0, 0, 0 );
 		var windowGeometry = new THREE.CubeGeometry( 0, 0, 0 );
-		cube = new THREE.Mesh(
-		                        new THREE.CubeGeometry( side, height, side ),
-		                        new THREE.MeshLambertMaterial( { color: buildingColor } )
-		                    );
+		var geometry = new THREE.SphereGeometry( 200, 20, 20 );
+		var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: false } );
+		cube = new THREE.Mesh(new THREE.CubeGeometry( side, height, side ), material);
 		cube.position.x=currX+side/2;
 		cube.position.y=currY+height/2;
 		cube.position.z=currZ+side/2;
