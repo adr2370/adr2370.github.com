@@ -43,11 +43,11 @@ function makeCity(numbers) {
 		var context1 = canvas1.getContext('2d');
 		context1.font = "Bold 40px Arial";
 		context1.fillStyle = "rgba(255,0,0,0.95)";
-	    context1.fillText('Hello,\n world!', 0, 0);
+	    context1.fillText('Hello,\n world!', 0, 50);
 		var texture2 = new THREE.Texture(canvas1);
 		texture2.needsUpdate = true;
 		var sideFace=new THREE.MeshBasicMaterial({map: texture});
-		var topFace=new THREE.MeshBasicMaterial({color: 0xFF0000, map: texture2});
+		var topFace=new THREE.MeshBasicMaterial({map: texture2, transparent: false});
 		var bottomFace=new THREE.MeshBasicMaterial({color: 0x000000});
 		var materials = [];
 		for (var i=0; i<6; i++) {
