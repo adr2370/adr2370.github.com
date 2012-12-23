@@ -16,7 +16,7 @@ function makeCity(numbers) {
 		loader.load( 'img/building.jpg' );
 		materials = [];
 		for (var i=0; i<6; i++) {
-			if(i<=3) {
+			if(i<2||i>3) {
 				materials.push(new THREE.MeshBasicMaterial({map: texture}));
 			} else {
 				materials.push(new THREE.MeshBasicMaterial({color: 0xff0000}));
