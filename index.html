@@ -20,7 +20,7 @@
 			renderer = new THREE.WebGLRenderer();
 			scene = new THREE.Scene();
 			camera = new THREE.PerspectiveCamera(35,800/600,0.1,10000);
-			camera.position.set(-50,170,130);
+			camera.position.set(-50,160,130);
 			lights=new Array();
 			controls = new THREE.FirstPersonControls( camera );
 			renderer. setSize( window.innerWidth, window.innerHeight );
@@ -115,7 +115,11 @@
 							friendNames.push(currFriend);
 						}
 						buildings=makeCity(mutualFriends,friendNames);
-						controls.target=new THREE.Vector3(-20,100,60);
+						controls.lat=-38;
+						controls.lon=-63;
+						controls.phi=2.242;
+						controls.theta=-1.108
+						//controls.target=new THREE.Vector3(-20,100,60);
 						for(var i=0;i<buildings.length;i++) {
 							scene.add(buildings[i]);
 						}
@@ -150,10 +154,5 @@
 	<script src="js/three.min.js"></script>
 	<script src="js/FirstPersonControls.js"></script>
 	<script src="js/city.js"></script>
-	<script type="text/javascript">
-		var x=new Array();
-		for(var i=0;i<13;i++) x[i]=i+5;
-		
-	</script>
 </body>
 </html>
