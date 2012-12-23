@@ -8,8 +8,8 @@ function makeCity(numbers) {
 		currZ=0;
 		buildingArray=new Array();
 		for(var i=0;i<numbers.length;i++) {
-			makeBuilding(currX,0,currZ,5,numbers[buildings.length],1);
-			var step=buildingArray.length+1;
+			makeBuilding(currX,0,currZ,5,numbers[i],1);
+			var step=i+1;
 			var s=Math.floor(Math.sqrt(step));
 			if(s%2==0) s--;
 			var diff=step-s*s;
