@@ -39,9 +39,16 @@ function makeCity(numbers) {
 			texture.needsUpdate = true;
 		} );
 		loader.load( 'img/building.png' );
+		var texture2 = new THREE.Texture();
+		var loader = new THREE.ImageLoader();
+		loader.addEventListener( 'load', function ( event ) {
+			texture2.image = event.content;
+			texture2.needsUpdate = true;
+		} );
+		loader.load( 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/260801_565524611_292808621_q.jpg' );
 		var sideFace=new THREE.MeshBasicMaterial({map: texture});
-		var topFace=new THREE.MeshBasicMaterial({color: buildingColor});
-		var bottomFace=new THREE.MeshBasicMaterial({color: 0xBBBBBB});
+		var topFace=new THREE.MeshBasicMaterial({color: 0x000000});
+		var bottomFace=new THREE.MeshBasicMaterial({color: 0x000000});
 		var materials = [];
 		for (var i=0; i<6; i++) {
 			if(i<2||i>3) {
