@@ -1,4 +1,4 @@
-function makeCity(numbers,names,links) {
+function makeCity(numbers,names) {
 	var buildingArray,buildingSpace,currX,currZ;
 	initializeCity();
 	return buildingArray;
@@ -84,7 +84,6 @@ function makeCity(numbers,names,links) {
 		cube.position.x=x+side/2;
 		cube.position.y=y+height/2;
 		cube.position.z=z+side/2;
-		cube.name=links[buildingArray.length];
 		buildingArray.push(cube);
 	}
 	function makeCoolBuilding(x,y,z,windows,floors,squareSize) {
