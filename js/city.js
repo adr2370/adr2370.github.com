@@ -39,10 +39,10 @@ function makeCity(numbers) {
 			texture.needsUpdate = true;
 		} );
 		loader.load( 'img/building.png' );
-		var canvas1=document.getElementById("myCanvas");
+		var canvas1=document.createElement('canvas');
 		canvas1.width=100;
 		canvas1.height=100;
-		var ctx=c.getContext("2d");
+		var ctx=canvas1.getContext("2d");
 		ctx.rect(0,0,canvas1.width,canvas1.height);
 		ctx.fillStyle="rgba(255,0,0,1)";
 		ctx.fill();
