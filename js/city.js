@@ -45,7 +45,7 @@ function makeCity(numbers) {
 			texture2.image = event.content;
 			texture2.needsUpdate = true;
 		} );
-		loader.load( 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/260801_565524611_292808621_q.jpg' );
+		loader.load( 'http://graph.facebook.com/adr2370/picture?type=square' );
 		var sideFace=new THREE.MeshBasicMaterial({map: texture});
 		var topFace=new THREE.MeshBasicMaterial({map: texture2});
 		var bottomFace=new THREE.MeshBasicMaterial({color: 0x000000});
