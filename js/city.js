@@ -30,19 +30,18 @@ function makeCity(numbers) {
 		var buildingColor=Math.floor(Math.random()*0xEEEEEE);
 		var height=squareSize*(floors*3);
 		var side=(windows*2+1)*squareSize;
-		
 		var texture = new THREE.Texture();
+		texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+		texture.repeat.set( 1, floors );
 		var loader = new THREE.ImageLoader();
 		loader.addEventListener( 'load', function ( event ) {
 			texture.image = event.content;
-			texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-			texture.repeat.set( floors, 1 );
 			texture.needsUpdate = true;
 		} );
 		loader.load( 'img/building.png' );
 		var sideFace=new THREE.MeshBasicMaterial({map: texture});
-		var topFace=new THREE.MeshBasicMaterial({color: 0xBBBBBB});
-		var bottomFace=new THREE.MeshBasicMaterial({color: buildingColor});
+		var topFace=new THREE.MeshBasicMaterial({color: buildingColor});
+		var bottomFace=new THREE.MeshBasicMaterial({color: 0xBBBBBB});
 		var materials = [];
 		for (var i=0; i<6; i++) {
 			if(i<2||i>3) {
@@ -53,7 +52,6 @@ function makeCity(numbers) {
 				materials.push(bottomFace);
 			}
 		}
-		
 		var cubeGeo = new THREE.CubeGeometry(side,height,side);
 		var cube = new THREE.Mesh(cubeGeo, new THREE.MeshFaceMaterial(materials));
 		cube.position.x=x+side/2;
