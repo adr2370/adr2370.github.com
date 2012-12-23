@@ -65,7 +65,7 @@
 				ray.direction=mouse3D.subSelf(camera.position).normalize();
 				var intersects=ray.intersectObjects(scene.__objects);
 				if ( intersects.length > 0 ) {
-					window.open(intersects[0].name);
+					window.open(intersects[0].object.name);
 				}
 			}
 		}
