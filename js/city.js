@@ -39,14 +39,13 @@ function makeCity(numbers) {
 			texture.needsUpdate = true;
 		} );
 		loader.load( 'img/building.png' );
-		var texture2 = new THREE.Texture();
-		texture2.crossOrigin = 'anonymous';
-		var loader = new THREE.ImageLoader();
-		loader.addEventListener( 'load', function ( event ) {
-			texture2.image = event.content;
-			texture2.needsUpdate = true;
-		} );
-		loader.load( 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/260801_565524611_292808621_q.jpg' );
+		var canvas1 = document.createElement('canvas');
+		var context1 = canvas1.getContext('2d');
+		context1.font = "Bold 40px Arial";
+		context1.fillStyle = "rgba(255,0,0,0.95)";
+	    context1.fillText('Hello, world!', 0, 50);
+		var texture2 = new THREE.Texture(canvas1);
+		texture2.needsUpdate = true;
 		var sideFace=new THREE.MeshBasicMaterial({map: texture});
 		var topFace=new THREE.MeshBasicMaterial({map: texture2});
 		var bottomFace=new THREE.MeshBasicMaterial({color: 0x000000});
