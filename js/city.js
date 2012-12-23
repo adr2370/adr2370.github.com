@@ -48,17 +48,14 @@ function makeCity(numbers,names) {
 		ctx.fill();
 		ctx.fillStyle = "rgba(255,255,255,1)";
 		ctx.textAlign = 'center';
-		if(names[buildingArray.length][0]>10) {
+		if(names[buildingArray.length][0]>10||names[buildingArray.length][1]>10) {
 			ctx.font = "Bold 12px Arial";
 		} else {
 			ctx.font = "Bold 16px Arial";
 		}
+		console.log(names[buildingArray.length]);
+		console.log(ctx.font);
 		ctx.fillText(names[buildingArray.length][0],50,40);
-		if(names[buildingArray.length][1]>10) {
-			ctx.font = "Bold 12px Arial";
-		} else {
-			ctx.font = "Bold 16px Arial";
-		}
 		ctx.fillText(names[buildingArray.length][1],50,70);
 		var texture2 = new THREE.Texture(canvas1);
 		texture2.needsUpdate = true;
