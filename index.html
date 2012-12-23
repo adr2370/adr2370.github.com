@@ -94,7 +94,7 @@
 		}
 
 		function getFriends() {
-			if(buildings.length==0) {
+			if(buildings==null||buildings.length==0) {
 				$('.login').remove();
 				$('#fb-root').append('<div style="position: absolute;">w=forward<br>a=left<br>s=backward<br>d=right<br>r=up<br>f=down<br>click and drag=look around<br>right click=open friend\'s page<br></div>');
 				FB.api(
