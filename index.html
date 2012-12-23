@@ -65,8 +65,7 @@
 				ray.direction=mouse3D.subSelf(camera.position).normalize();
 				var intersects=ray.intersectObjects(scene.__objects);
 				if ( intersects.length > 0 ) {
-					var friendNum=(intersects[0].object.id-buildings[0].id+1)/2;
-					window.open(friends[friendNum].profile_url);
+					window.open(buildings[0].name);
 				}
 			}
 		}
@@ -107,19 +106,20 @@
 						friends=data;
 						var mutualFriends=new Array();
 						var friendNames=new Array();
+						var profileUrls=new Array();
 						for(var i=0;i<data.length;i++) {
 							mutualFriends.push(Math.floor(1+data[i].mutual_friend_count/10));
 							var currFriend=new Array();
 							currFriend.push(data[i].first_name);
 							currFriend.push(data[i].last_name);
 							friendNames.push(currFriend);
+							profileUrls.push(data[i].profile_url);
 						}
-						buildings=makeCity(mutualFriends,friendNames);
+						buildings=makeCity(mutualFriends,friendNames,profileUrls);
 						controls.lat=-38;
 						controls.lon=-63;
 						controls.phi=2.242;
 						controls.theta=-1.108
-						//controls.target=new THREE.Vector3(-20,100,60);
 						for(var i=0;i<buildings.length;i++) {
 							scene.add(buildings[i]);
 						}

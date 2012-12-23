@@ -1,4 +1,4 @@
-function makeCity(numbers,names) {
+function makeCity(numbers,names,links) {
 	var buildingArray,buildingSpace,currX,currZ;
 	initializeCity();
 	return buildingArray;
@@ -50,12 +50,16 @@ function makeCity(numbers,names) {
 		ctx.textAlign = 'center';
 		if(names[buildingArray.length][0].length>10) {
 			ctx.font = "Bold 12px Arial";
+		} else if(names[buildingArray.length][0].length>15) {
+			ctx.font = "Bold 10px Arial";
 		} else {
 			ctx.font = "Bold 16px Arial";
 		}
 		ctx.fillText(names[buildingArray.length][0],50,40);
 		if(names[buildingArray.length][1].length>10) {
 			ctx.font = "Bold 12px Arial";
+		} else if(names[buildingArray.length][1].length>15) {
+			ctx.font = "Bold 10px Arial";
 		} else {
 			ctx.font = "Bold 16px Arial";
 		}
@@ -80,6 +84,7 @@ function makeCity(numbers,names) {
 		cube.position.x=x+side/2;
 		cube.position.y=y+height/2;
 		cube.position.z=z+side/2;
+		cube.name=links[buildingArray.length];
 		buildingArray.push(cube);
 	}
 	function makeCoolBuilding(x,y,z,windows,floors,squareSize) {
