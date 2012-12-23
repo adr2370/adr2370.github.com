@@ -1,12 +1,11 @@
 function makeCity(numbers) {
-	var buildingArray,buildingSpace,currX,currZ,clock;
+	var buildingArray,buildingSpace,currX,currZ;
 	initializeCity();
 	return buildingArray;
 	function initializeCity() {
 		buildingSpace=15;
 		currX=0;
 		currZ=0;
-		clock=new THREE.Clock(true);
 		buildingArray=new Array();
 		for(var i=0;i<numbers.length;i++) {
 			makeBuilding(currX,0,currZ,5,numbers[buildings.length],1);

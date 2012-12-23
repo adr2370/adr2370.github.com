@@ -12,9 +12,10 @@
 	<div class="login" style="cursor:pointer;" onclick="login();"><img src="http://www.tweekly.fm/media/image/login-facebook.png" /></div>
 	<script id="facebook-jssdk" async="" src="https://connect.facebook.net/en_US/all.js"></script>
 	<script type="text/javascript">
-		var buildings,renderer,scene,camera,lights,controls;
+		var buildings,renderer,scene,camera,lights,controls,clock;
 		var friends;
 		function init() {
+			clock=new THREE.Clock(true);
 			buildings=new Array();
 			renderer = new THREE.WebGLRenderer();
 			scene = new THREE.Scene();
