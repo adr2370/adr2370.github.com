@@ -9,7 +9,7 @@ function makeCity(numbers) {
 		buildingArray=new Array();
 		for(var i=0;i<numbers.length;i++) {
 			makeBuilding(currX,0,currZ,5,numbers[i],1);
-			var step=i+1;
+			var step=i+2;
 			var s=Math.floor(Math.sqrt(step));
 			if(s%2==0) s--;
 			var diff=step-s*s;

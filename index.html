@@ -66,7 +66,7 @@
 				ray.direction=mouse3D.subSelf(camera.position).normalize();
 				var intersects=ray.intersectObjects(scene.__objects);
 				if ( intersects.length > 0 ) {
-					var friendNum=(intersects[0].object.id-9)/2;
+					var friendNum=(intersects[0].object.id-buildings[0].id+1)/2;
 					window.open("http://www.facebook.com/"+friends[friendNum].uid);
 				}
 			}
