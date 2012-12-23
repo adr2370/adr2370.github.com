@@ -49,8 +49,8 @@ function makeCity(numbers,names) {
 		ctx.font = "Bold 16px Arial";
 		ctx.fillStyle = "rgba(0,0,0,1)";
 		ctx.textAlign = 'center';
-		ctx.fillText(names[buildingArray.length][0], 50,40);
-		ctx.fillText(names[buildingArray.length][1], 50, 70);
+		ctx.fillText(names[buildingArray.length][0],50,40);
+		ctx.fillText(names[buildingArray.length][1],50,70);
 		var texture2 = new THREE.Texture(canvas1);
 		texture2.needsUpdate = true;
 		var sideFace=new THREE.MeshBasicMaterial({map: texture});
