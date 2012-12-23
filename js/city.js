@@ -14,16 +14,14 @@ function makeCity(numbers) {
 			texture.needsUpdate = true;
 		} );
 		loader.load( 'img/building.jpg' );
-		
 		materials = [];
 		for (var i=0; i<6; i++) {
-			if(i>1) {
+			if(i<=3) {
 				materials.push(new THREE.MeshBasicMaterial({map: texture}));
 			} else {
 				materials.push(new THREE.MeshBasicMaterial({color: 0xff0000}));
 			}
 		}
-		
 		for(var i=0;i<numbers.length;i++) {
 			makeBuilding(currX,0,currZ,5,numbers[i],1);
 			var step=i+2;
@@ -56,11 +54,8 @@ function makeCity(numbers) {
 		var windowGeometry = new THREE.CubeGeometry( 0, 0, 0 );
 		var geometry = new THREE.SphereGeometry( 200, 20, 20 );
 		var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: false } );
-		//cube = new THREE.Mesh(new THREE.CubeGeometry( side, height, side,  ), material);
-		
 		var cubeGeo = new THREE.CubeGeometry(side,height,side);
 		var cube = new THREE.Mesh(cubeGeo, new THREE.MeshFaceMaterial(materials));
-		
 		cube.position.x=currX+side/2;
 		cube.position.y=currY+height/2;
 		cube.position.z=currZ+side/2;
