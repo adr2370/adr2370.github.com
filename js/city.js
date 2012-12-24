@@ -46,12 +46,7 @@ function makeCity(numbers,labels) {
 		ctx.rect(0,0,canvas1.width,canvas1.height);
 		ctx.fillStyle="rgba(0,0,0,1)";
 		ctx.fill();
-		var img = new Image();
-		img.onload = function() {
-		    ctx.drawImage(img, 0, 0);
-		}
-		img.src = labels[buildingArray.length];
-		/*ctx.fillStyle = "rgba(255,255,255,1)";
+		ctx.fillStyle = "rgba(255,255,255,1)";
 		ctx.textAlign = 'center';
 		if(labels[0] instanceof Array) {
 			if(labels.length>=2) {
@@ -86,7 +81,7 @@ function makeCity(numbers,labels) {
 				ctx.font="Bold "+currSize+"px Arial";
 			} while(ctx.measureText(labels[buildingArray.length]).width>100);
 			ctx.fillText(labels[buildingArray.length],50,55);
-		}*/
+		}
 		var texture2 = new THREE.Texture(canvas1);
 		texture2.needsUpdate = true;
 		var sideFace=new THREE.MeshBasicMaterial({map: texture});
