@@ -79,7 +79,7 @@ function makeCity(numbers,labels) {
 			{
 				currSize--;
 				ctx.font="Bold "+currSize+"px Arial";
-			} while(context.measureText(labels[buildingArray.length]).width>100);
+			} while(ctx.measureText(labels[buildingArray.length]).width>100);
 			ctx.fillText(labels[buildingArray.length],50,55);
 		}
 		var texture2 = new THREE.Texture(canvas1);
