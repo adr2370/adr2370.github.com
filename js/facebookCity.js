@@ -75,7 +75,9 @@ function getLogin() {
 	    if (response.status === 'connected') {
 			getFacebookData();
 	    } else if (response.status === 'not_authorized') {
+			$('.login').show();
 	    } else {
+			$('.login').show();
 	    }
 	}, true);
 }
@@ -101,3 +103,8 @@ getLogin();
  js.src = "//connect.facebook.net/en_US/all.js";
  ref.parentNode.insertBefore(js, ref);
 }(document));
+$(function() {
+	if(!initialized) {
+		window.fbAsyncInit();
+	}
+});
