@@ -7,52 +7,8 @@
 	<meta name="viewport" content="width=device-width">
 </head>
 <body>
-	<div id="fb-root"></div>
-	<div class="login">Visualize how many mutual friends you have with each of your facebook friends</div>
-	<div class="login" style="cursor:pointer;" onclick="login();"><img src="http://www.tweekly.fm/media/image/login-facebook.png" /></div>
-	<script id="facebook-jssdk" async="" src="https://connect.facebook.net/en_US/all.js"></script>
-	<script src="js/three.min.js"></script>
-	<script src="js/FirstPersonControls.js"></script>
-	<script src="js/city.js"></script>
-	<script src="js/facebookCity.js"></script>
-	<script type="text/javascript">
-		function getFacebookData() {
-			if(buildings==null||buildings.length==0) {
-				$('.login').remove();
-				$('#fb-root').append('<div style="position: absolute;">w=forward<br>a=left<br>s=backward<br>d=right<br>r=up<br>f=down<br>click and drag=look around<br>right click=open friend\'s page<br></div>');
-				FB.api(
-				    {
-						method: 'fql.query',
-						query: 'SELECT uid, first_name, last_name, mutual_friend_count, profile_url FROM user WHERE uid IN (SELECT uid1 FROM friend WHERE uid2 = me()) ORDER BY mutual_friend_count DESC'
-				    },
-				    function(data) {
-						init();
-						friends=data;
-						var mutualFriends=new Array();
-						var friendNames=new Array();
-						for(var i=0;i<friends.length;i++) {
-							mutualFriends.push(Math.floor(1+friends[i].mutual_friend_count/10));
-							var currFriend=new Array();
-							currFriend.push(friends[i].first_name);
-							currFriend.push(friends[i].last_name);
-							friendNames.push(currFriend);
-						}
-						buildings=makeCity(mutualFriends,friendNames);
-						controls.lat=-38;
-						controls.lon=-63;
-						controls.phi=2.242;
-						controls.theta=-1.108
-						for(var i=0;i<buildings.length;i++) {
-							scene.add(buildings[i]);
-							buildings[i].name=friends[i].profile_url;
-						}
-				    }
-				);
-			}
-		}
-	</script>
-	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+	<h1>See your Facebook data as a city</h1>
+	<a href="mutualFriends.html">Your Friends Ranked by Mutual Friends</a>
+	<a href="friendCount.html">Your Friends Ranked by Their Friend Count</a>
 </body>
 </html>
