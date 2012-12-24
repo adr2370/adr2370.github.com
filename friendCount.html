@@ -30,8 +30,9 @@
 						friends=data;
 						var friendCounts=new Array();
 						var friendNames=new Array();
+						var multiplier=friends[0].friend_count/100;
 						for(var i=0;i<friends.length;i++) {
-							friendCounts.push(Math.floor(1+friends[i].friend_count/50));
+							friendCounts.push(Math.ceiling(friends[i].friend_count/multiplier));
 							var currFriend=new Array();
 							currFriend.push(friends[i].first_name);
 							currFriend.push(friends[i].last_name);
