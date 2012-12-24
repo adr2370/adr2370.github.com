@@ -60,7 +60,6 @@ function onDocumentMouseDown( event ) {
 
 function login() {
     FB.login(function(response) {
-		console.log(response.authResponse);
         if (response.authResponse) {
 			getFacebookData();
         } else {
@@ -72,7 +71,6 @@ function login() {
 function getLogin() {
 	
 	FB.getLoginStatus(function(response) {
-		console.log(response.status);
 	    if (response.status === 'connected') {
 			getFacebookData();
 	    } else if (response.status === 'not_authorized') {
