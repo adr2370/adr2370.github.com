@@ -50,40 +50,36 @@ function makeCity(numbers,labels) {
 		ctx.textAlign = 'center';
 		if(labels[0] instanceof Array) {
 			if(labels.length>=2) {
-				if(labels[buildingArray.length][0].length>10) {
-					ctx.font = "Bold 12px Arial";
-				} else if(labels[buildingArray.length][0].length>15) {
-					ctx.font = "Bold 10px Arial";
-				} else {
-					ctx.font = "Bold 16px Arial";
-				}
+				var currSize=21;
+				do
+				{
+					currSize--;
+					ctx.font="Bold "+currSize+"px Arial";
+				} while(context.measureText(labels[buildingArray.length][0]).width>100);
 				ctx.fillText(labels[buildingArray.length][0],50,40);
-				if(labels[buildingArray.length][1].length>10) {
-					ctx.font = "Bold 12px Arial";
-				} else if(labels[buildingArray.length][1].length>15) {
-					ctx.font = "Bold 10px Arial";
-				} else {
-					ctx.font = "Bold 16px Arial";
-				}
+				currSize=21;
+				do
+				{
+					currSize--;
+					ctx.font="Bold "+currSize+"px Arial";
+				} while(context.measureText(labels[buildingArray.length][1]).width>100);
 				ctx.fillText(labels[buildingArray.length][1],50,70);
 			} else {
-				if(labels[buildingArray.length][0].length>10) {
-					ctx.font = "Bold 12px Arial";
-				} else if(labels[buildingArray.length][0].length>15) {
-					ctx.font = "Bold 10px Arial";
-				} else {
-					ctx.font = "Bold 16px Arial";
-				}
+				var currSize=21;
+				do
+				{
+					currSize--;
+					ctx.font="Bold "+currSize+"px Arial";
+				} while(context.measureText(labels[buildingArray.length][0]).width>100);
 				ctx.fillText(labels[buildingArray.length][0],50,55);
 			}
 		} else {
-			if(labels[buildingArray.length].length>10) {
-				ctx.font = "Bold 12px Arial";
-			} else if(labels[buildingArray.length].length>15) {
-				ctx.font = "Bold 10px Arial";
-			} else {
-				ctx.font = "Bold 16px Arial";
-			}	
+			var currSize=21;
+			do
+			{
+				currSize--;
+				ctx.font="Bold "+currSize+"px Arial";
+			} while(context.measureText(labels[buildingArray.length]).width>100);
 			ctx.fillText(labels[buildingArray.length],50,55);
 		}
 		var texture2 = new THREE.Texture(canvas1);
