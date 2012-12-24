@@ -55,14 +55,14 @@ function makeCity(numbers,labels) {
 				{
 					currSize--;
 					ctx.font="Bold "+currSize+"px Arial";
-				} while(context.measureText(labels[buildingArray.length][0]).width>100);
+				} while(ctx.measureText(labels[buildingArray.length][0]).width>100);
 				ctx.fillText(labels[buildingArray.length][0],50,40);
 				currSize=21;
 				do
 				{
 					currSize--;
 					ctx.font="Bold "+currSize+"px Arial";
-				} while(context.measureText(labels[buildingArray.length][1]).width>100);
+				} while(ctx.measureText(labels[buildingArray.length][1]).width>100);
 				ctx.fillText(labels[buildingArray.length][1],50,70);
 			} else {
 				var currSize=21;
@@ -70,7 +70,7 @@ function makeCity(numbers,labels) {
 				{
 					currSize--;
 					ctx.font="Bold "+currSize+"px Arial";
-				} while(context.measureText(labels[buildingArray.length][0]).width>100);
+				} while(ctx.measureText(labels[buildingArray.length][0]).width>100);
 				ctx.fillText(labels[buildingArray.length][0],50,55);
 			}
 		} else {
