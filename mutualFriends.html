@@ -30,7 +30,7 @@
 						friends=data;
 						var mutualFriends=new Array();
 						var friendNames=new Array();
-						var multiplier=friends[0].friend_count/100;
+						var multiplier=friends[0].friend_count/50;
 						for(var i=0;i<friends.length;i++) {
 							mutualFriends.push(Math.ceil(friends[i].mutual_friend_count/multiplier));
 							var currFriend=new Array();
