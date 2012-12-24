@@ -48,7 +48,7 @@ function makeCity(numbers,labels) {
 		ctx.fill();
 		ctx.fillStyle = "rgba(255,255,255,1)";
 		ctx.textAlign = 'center';
-		if(labels instanceof Array) {
+		if(labels[0] instanceof Array) {
 			if(labels.length>=2) {
 				if(labels[buildingArray.length][0].length>10) {
 					ctx.font = "Bold 12px Arial";
