@@ -16,6 +16,11 @@
 	<script src="js/city.js"></script>
 	<script src="js/facebookCity.js"></script>
 	<script type="text/javascript">
+		$(function() {
+			if(!initialized) {
+				window.fbAsyncInit();
+			}
+		});
 		function getFacebookData() {
 			if(buildings==null||buildings.length==0) {
 				$('.login').remove();

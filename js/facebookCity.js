@@ -1,4 +1,4 @@
-var buildings,renderer,scene,camera,lights,controls,clock;
+var buildings,renderer,scene,camera,lights,controls,clock,initialized;
 var friends;
 function init() {
 	clock=new THREE.Clock(true);
@@ -69,6 +69,7 @@ function login() {
 }
 
 function getLogin() {
+	
 	FB.getLoginStatus(function(response) {
 		console.log(response.status);
 	    if (response.status === 'connected') {
@@ -80,6 +81,7 @@ function getLogin() {
 }
 
 window.fbAsyncInit = function() {
+	initialized=true;
   FB.init({ 
     appId: '237522263048090',
     status: true,
