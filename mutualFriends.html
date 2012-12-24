@@ -29,7 +29,7 @@
 				FB.api(
 				    {
 						method: 'fql.query',
-						query: 'SELECT uid, first_name, last_name, mutual_friend_count, profile_url FROM user WHERE uid IN (SELECT uid1 FROM friend WHERE uid2 = me()) ORDER BY mutual_friend_count DESC'
+						query: 'SELECT uid, first_name, last_name, mutual_friend_count, pic_square, profile_url FROM user WHERE uid IN (SELECT uid1 FROM friend WHERE uid2 = me()) ORDER BY mutual_friend_count DESC'
 				    },
 				    function(data) {
 						init();
@@ -39,10 +39,11 @@
 						var multiplier=friends[0].mutual_friend_count/40;
 						for(var i=0;i<friends.length;i++) {
 							mutualFriends.push(Math.floor(1+friends[i].mutual_friend_count/multiplier));
-							var currFriend=new Array();
+							/*var currFriend=new Array();
 							currFriend.push(friends[i].first_name);
 							currFriend.push(friends[i].last_name);
-							friendNames.push(currFriend);
+							friendNames.push(currFriend);*/
+							friendNames.push(pic_square);
 						}
 						buildings=makeCity(mutualFriends,friendNames);
 						controls.lat=-38;
