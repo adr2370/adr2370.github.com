@@ -78,7 +78,6 @@ function getLogin() {
 	}, true);
 }
 
-window.fbAsyncInit();
 window.fbAsyncInit = function() {
   FB.init({ 
     appId: '237522263048090',
@@ -99,3 +98,4 @@ getLogin();
  js.src = "//connect.facebook.net/en_US/all.js";
  ref.parentNode.insertBefore(js, ref);
 }(document));
+window.fbAsyncInit();
