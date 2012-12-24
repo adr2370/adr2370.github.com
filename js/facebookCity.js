@@ -11,6 +11,7 @@ function init() {
 	controls = new THREE.FirstPersonControls( camera );
 	renderer. setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild( renderer.domElement );
+	$('canvas').attr("style","position:absolute;top:0px;left:0px;z-index:-1;");
 	scene.add( camera );
 	for(var i=0;i<6;i++) {
 		lights.push(new THREE.PointLight( 0xFFFFFF ));
