@@ -23,22 +23,19 @@
 				FB.api(
 				    {
 						method: 'fql.query',
-						query: 'SELECT uid, first_name, last_name, friend_count, profile_url FROM user WHERE uid IN (SELECT uid1 FROM friend WHERE uid2 = me()) ORDER BY friend_count DESC'
+						query: 'SELECT page_id, name, fan_count, page_url FROM page WHERE page_id IN (SELECT page_id FROM page_fan WHERE uid = me()) ORDER BY fan_count DESC'
 				    },
 				    function(data) {
 						init();
 						friends=data;
-						var friendCounts=new Array();
-						var friendNames=new Array();
-						var multiplier=friends[0].friend_count/40;
+						var likeCount=new Array();
+						var pageNames=new Array();
+						var multiplier=friends[0].fan_count/40;
 						for(var i=0;i<friends.length;i++) {
-							friendCounts.push(Math.floor(1+friends[i].friend_count/multiplier));
-							var currFriend=new Array();
-							currFriend.push(friends[i].first_name);
-							currFriend.push(friends[i].last_name);
-							friendNames.push(currFriend);
+							likeCount.push(Math.floor(1+friends[i].fan_count/multiplier));
+							pageNames.push(friends[i].name);
 						}
-						buildings=makeCity(friendCounts,friendNames);
+						buildings=makeCity(likeCount,pageNames);
 						controls.lat=-38;
 						controls.lon=-63;
 						controls.phi=2.242;

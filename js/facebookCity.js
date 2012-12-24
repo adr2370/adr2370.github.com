@@ -29,6 +29,7 @@ function init() {
 	var plane=new THREE.Mesh(new THREE.PlaneGeometry(10000,10000),new THREE.MeshLambertMaterial( { color: 0xCCCCCC } ));
 	plane.rotation.x=-1.57;
 	plane.position.set(0,0,0);
+	plane.name="ground";
 	scene.add(plane);
 	animate();
 }
@@ -50,7 +51,7 @@ function onDocumentMouseDown( event ) {
 		var mouse3D = projector.unprojectVector( new THREE.Vector3( ( event.clientX / renderer.domElement.width ) * 2 - 1, - ( event.clientY / renderer.domElement.height ) * 2 + 1, 0.5 ), camera );
 		ray.direction=mouse3D.subSelf(camera.position).normalize();
 		var intersects=ray.intersectObjects(scene.__objects);
-		if ( intersects.length > 0 ) {
+		if (intersects.length>0&&intersects[0].object.name!="ground") {
 			window.open(intersects[0].object.name);
 		}
 	}

@@ -1,4 +1,4 @@
-function makeCity(numbers,names) {
+function makeCity(numbers,labels) {
 	var buildingArray,buildingSpace,currX,currZ;
 	initializeCity();
 	return buildingArray;
@@ -48,22 +48,44 @@ function makeCity(numbers,names) {
 		ctx.fill();
 		ctx.fillStyle = "rgba(255,255,255,1)";
 		ctx.textAlign = 'center';
-		if(names[buildingArray.length][0].length>10) {
-			ctx.font = "Bold 12px Arial";
-		} else if(names[buildingArray.length][0].length>15) {
-			ctx.font = "Bold 10px Arial";
+		if(labels instanceof Array) {
+			if(labels.length>=2) {
+				if(labels[buildingArray.length][0].length>10) {
+					ctx.font = "Bold 12px Arial";
+				} else if(labels[buildingArray.length][0].length>15) {
+					ctx.font = "Bold 10px Arial";
+				} else {
+					ctx.font = "Bold 16px Arial";
+				}
+				ctx.fillText(labels[buildingArray.length][0],50,40);
+				if(labels[buildingArray.length][1].length>10) {
+					ctx.font = "Bold 12px Arial";
+				} else if(labels[buildingArray.length][1].length>15) {
+					ctx.font = "Bold 10px Arial";
+				} else {
+					ctx.font = "Bold 16px Arial";
+				}
+				ctx.fillText(labels[buildingArray.length][1],50,70);
+			} else {
+				if(labels[buildingArray.length][0].length>10) {
+					ctx.font = "Bold 12px Arial";
+				} else if(labels[buildingArray.length][0].length>15) {
+					ctx.font = "Bold 10px Arial";
+				} else {
+					ctx.font = "Bold 16px Arial";
+				}
+				ctx.fillText(labels[buildingArray.length][0],50,55);
+			}
 		} else {
-			ctx.font = "Bold 16px Arial";
+			if(labels[buildingArray.length].length>10) {
+				ctx.font = "Bold 12px Arial";
+			} else if(labels[buildingArray.length].length>15) {
+				ctx.font = "Bold 10px Arial";
+			} else {
+				ctx.font = "Bold 16px Arial";
+			}	
+			ctx.fillText(labels[buildingArray.length],50,55);
 		}
-		ctx.fillText(names[buildingArray.length][0],50,40);
-		if(names[buildingArray.length][1].length>10) {
-			ctx.font = "Bold 12px Arial";
-		} else if(names[buildingArray.length][1].length>15) {
-			ctx.font = "Bold 10px Arial";
-		} else {
-			ctx.font = "Bold 16px Arial";
-		}
-		ctx.fillText(names[buildingArray.length][1],50,70);
 		var texture2 = new THREE.Texture(canvas1);
 		texture2.needsUpdate = true;
 		var sideFace=new THREE.MeshBasicMaterial({map: texture});
